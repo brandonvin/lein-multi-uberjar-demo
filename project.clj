@@ -12,7 +12,8 @@
   :auto-clean false
 
   :aliases
-  {"uberjar" ["with-profile" "v1:v2" "uberjar"]}
+  {"uberjar" ["with-profile" "v1:v2" "uberjar"]
+   "test" ["with-profile" "v1:v2" "test"]}
 
   :profiles
   {;; Use :v1 by default, for example for `lein repl`.
@@ -20,10 +21,12 @@
    [:base :system :user :provided :v1 :dev]
 
    :v1
+   ^{:pom-scope :provided}
    {:uberjar-name "demo_3.5.1.jar"
     :dependencies [[org.apache.spark/spark-core_2.12 "3.5.1"]]}
 
    :v2
+   ^{:pom-scope :provided}
    {:uberjar-name "demo_3.1.2.jar"
     :dependencies [[org.apache.spark/spark-core_2.12 "3.1.2"]]}
 
