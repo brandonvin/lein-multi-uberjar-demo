@@ -6,14 +6,12 @@
 
   :main demo.main
 
-  ;; By default, lein runs "clean" before building an uberjar, which
-  ;; deletes the earlier-built uberjar. :auto-clean false disables this.
-  ;; TODO: figure out if this is problematic
-  :auto-clean false
-
   :aliases
-  {"uberjar" ["with-profile" "v1:v2" "uberjar"]
+  {"uberjar" ["with-profile" "uberjar,provided,v1:uberjar,provided,v2" "uberjar"]
+   "check" ["with-profile" "+v1:+v2" "check"]
    "test" ["with-profile" "v1:v2" "test"]}
+
+  :target-path "target/%s"
 
   :profiles
   {;; Use :v1 by default, for example for `lein repl`.
@@ -31,5 +29,5 @@
     :dependencies [[org.apache.spark/spark-core_2.12 "3.1.2"]]}
 
    :uberjar
-   {:target-path "target/uberjar"
+   {:clean-targets [:compile-path]
     :aot :all}})
